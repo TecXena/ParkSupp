@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+      <link rel="stylesheet" href="{{url_for('static', filename='pages.css')}}">
+
+<style>
+.form {
+  display: flex;
+  flex-direction: column;
+  background: #606c88;
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);
+  background: linear-gradient(to right, #3f4c6b, #606c88);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 350px;
+  margin-top:100px;
+  margin-bottom:200px;
+}
+
+.title {
+text-align: left;
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+
+.description {
+text-align: left;
+  line-height: 1.5rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  color: rgb(209 213 219);
+}
+
+.form div {
+  display: flex;
+  max-width: 28rem;
+  margin-top: 1rem;
+  column-gap: 0.5rem;
+}
+
+.form div input {
+  outline: none;
+  line-height: 1.5rem;
+  font-size: 0.875rem;
+  color: rgb(255 255 255 );
+  padding: 0.5rem 0.875rem;
+  background-color: rgb(255 255 255 / 0.05);
+  border: 1px solid rgba(253, 253, 253, 0.363);
+  border-radius: 0.375rem;
+  flex: 1 1 auto;
+}
+
+.form div input::placeholder {
+  color: rgb(216, 212, 212);
+}
+
+.form div input:focus {
+  border: 1px solid rgb(99 102 241);
+}
+
+.button {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.625rem 0.875rem;
+  background-color: var(--blue);
+  border-radius: 0.375rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    .header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .header-right {
+        float: none;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .form{
+      margin-top:200px;
+  margin-bottom:200px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="header">
+    <img src="{{url_for('static', filename='Logo.png')}}" class="logo" >
+    <div class="header-right">
+        <a href="{{ url_for('userLogin') }}">Home</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+        <a href="{{ url_for('about')}}">About</a>
+        <a href="{{ url_for('adminLogin') }}">Admin</a>
+    </div>
+</div>
+
+<svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 100" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(253, 252, 252, 1)" offset="0%"></stop><stop stop-color="rgba(253, 252, 252, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,60L80,58.3C160,57,320,53,480,48.3C640,43,800,37,960,40C1120,43,1280,57,1440,65C1600,73,1760,77,1920,80C2080,83,2240,87,2400,80C2560,73,2720,57,2880,50C3040,43,3200,47,3360,53.3C3520,60,3680,70,3840,76.7C4000,83,4160,87,4320,83.3C4480,80,4640,70,4800,56.7C4960,43,5120,27,5280,25C5440,23,5600,37,5760,50C5920,63,6080,77,6240,83.3C6400,90,6560,90,6720,78.3C6880,67,7040,43,7200,33.3C7360,23,7520,27,7680,30C7840,33,8000,37,8160,46.7C8320,57,8480,73,8640,80C8800,87,8960,83,9120,81.7C9280,80,9440,80,9600,73.3C9760,67,9920,53,10080,46.7C10240,40,10400,40,10560,41.7C10720,43,10880,47,11040,40C11200,33,11360,17,11440,8.3L11520,0L11520,100L11440,100C11360,100,11200,100,11040,100C10880,100,10720,100,10560,100C10400,100,10240,100,10080,100C9920,100,9760,100,9600,100C9440,100,9280,100,9120,100C8960,100,8800,100,8640,100C8480,100,8320,100,8160,100C8000,100,7840,100,7680,100C7520,100,7360,100,7200,100C7040,100,6880,100,6720,100C6560,100,6400,100,6240,100C6080,100,5920,100,5760,100C5600,100,5440,100,5280,100C5120,100,4960,100,4800,100C4640,100,4480,100,4320,100C4160,100,4000,100,3840,100C3680,100,3520,100,3360,100C3200,100,3040,100,2880,100C2720,100,2560,100,2400,100C2240,100,2080,100,1920,100C1760,100,1600,100,1440,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path></svg>
+
+
+
+
+
+
+
+<center>
+    <form class="form">
+  <span class="title">View the Parking lot as a Guest</span>
+  <p class="description">For those who are temporarily using the parking lot, you can enter the given code by the guard or parking lot admin to gain temporary access to this website.</p>
+  <div>
+      <form method="POST">
+        <input placeholder="Enter your code" type="text" name="guestCode" id="guestCode">
+        <a href="{{ url_for('home') }}" class="button" onclick="showAlert()" >Enter</a>
+      </form>
+  </div>
+</form>
+
+    <!---
+<p> insert code given by the guard house to temporarily view the parking lot</p>
+
+    <p>1. save to database the code thru an admin button</p>
+    <p>2. when submit is pressed, check the database if the code exits</p>
+    <p>3. send an alert that code is recognized</p>
+    <p>4. Print that access is given temp and code will be removed after a specified amount of time set by the guard house</p>--->
+</center>
+
+
+
+
+
+<svg style="display: block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" ><path fill="#efe1e8" fill-opacity="1" d="M0,128L60,112C120,96,240,64,360,74.7C480,85,600,139,720,160C840,181,960,171,1080,165.3C1200,160,1320,160,1380,160L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+<div class="footer-new">
+    <h2>Created by:</h2>
+    <p>William, Tabilin | Xena, Tec | Vincent, Torrazo</p>
+    <br>
+    <br>
+</div>
+
+<script>
+function showAlert() {
+    alert ("Code is valid! Access to parking lot has been temporarily allowed.");
+  }
+</script>
+</body>
+</html>

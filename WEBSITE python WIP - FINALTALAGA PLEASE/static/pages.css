@@ -1,0 +1,382 @@
+/*==================
+    MEDIA RESIZING
+===================*/
+@media screen and (max-width: 500px) {
+    .header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .header-right {
+        float: none;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .columnAbout {
+        width: 100%;
+        display: block;
+    }
+}
+
+
+
+/*==================
+    FOR ALL PAGES
+===================*/
+:root{
+    --black: #130c0f;
+    --pink: #fcedf4;
+    --white: #fdfcfc;
+    --gray: #c5cfd3;
+    --blue: #4f8de3;
+    --darkpink: #efe1e8;
+    --lightblue: #8cb5ed;
+    --darkblue: #111827;
+    --purple: #a78bfa;
+}
+
+* {box-sizing: border-box;}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--pink);
+    color:var(--black);
+}
+
+.logo{
+    width:20%;
+    margin-left:20px;
+    transition: transform 400ms cubic-bezier(.68,-0.55,.27,2.5);
+}
+
+.logo:hover{
+    transform: scale(105%);
+}
+
+.header {
+    overflow: hidden;
+    padding: 20px 10px;
+    background-color:var(--white);
+}
+
+.header a {
+    float: left;
+    color:var(--black);
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 1.1250em;
+    line-height: 25px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+
+.header a:hover {
+    background: var(--gray);
+    color: var(--white);
+    font-size: 1.5em;
+}
+
+.header a.active {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.header-right {
+    float: right;
+}
+
+.footer-new{
+    background-color: var(--darkpink);
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+}
+
+
+
+/*==================
+      BUTTONS
+===================*/
+
+
+.input {
+    background-color: var(--white);
+    padding: 1rem;
+    padding-right: 3rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    width: 50%;
+    border: 1px solid var(--gray);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    transition: 0.5s ease-out;
+}
+
+.input:hover{
+    border-color: var(--blue);
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+    transition: 0.5s ease-out;
+}
+
+
+
+/*==================
+      CHAT BOX
+===================*/
+#videoElement {
+    width: 50%;
+    height: 30%;
+}
+
+#chatbox {
+    margin: 20px;
+    height: 300px;
+    border: 1px solid var(--gray);
+    background-color: var(--white);
+    padding: 30px;
+    overflow-y: scroll;
+}
+
+.card {
+    width: 75%;
+    background-color: var(--white);
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.chat-header {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 10px;
+    font-size: 18px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/*==================
+    CONTACT PAGE
+===================*/
+.send-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:10px;
+    margin-bottom:10px;
+    border: none;
+    outline: none;
+    background-color: var(--blue);
+    color: var(--white);
+    font-size: 14px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.send-button:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Style inputs */
+input[type=text].a{
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit].a {
+    background-color: var(--gray);
+    color: var(--black);
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type=submit].a:hover {
+    background-color: var(--lightblue);
+}
+
+/* Style the container/contact section */
+.containerContact {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Create two columnContacts that float next to eachother */
+.columnContact {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
+}
+
+/* Clear floats after the columnContacts */
+.rowContactContact:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.contactImg{
+    width:100%;
+    border-radius: 20px;
+    transition: 0.3s ease-out;
+}
+
+.contactImg:hover{
+    transform: scale(1.04) rotate(-1deg);
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.50);
+}
+/* Responsive layout - when the screen is less than 600px wide, make the two columnContacts stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+    .columnContact, input[type=submit].a {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+
+/*==================
+    ADMIN PAGE
+===================*/
+
+.func-button {
+    display:inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:10px;
+    margin-bottom:10px;
+    border: none;
+    outline: none;
+    background-color: var(--gray);
+    color: var(--black);
+    font-size: 14px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.func-button:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.Parent {
+    display: flex;
+    flex-direction: row;
+}
+
+.child1 {
+    width: 50%;
+}
+
+.child2 {
+    width: 50%;
+}
+
+/*==================
+    ABOUT PAGE
+===================*/
+
+.columnAbout {
+    float: left;
+    width: 33.3%;
+    margin-bottom: 16px;
+    padding: 0 20px;
+
+
+}
+
+.cardAbout {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+    transition-duration: 1s;
+    transition-property: box-shadow;
+    width:100%;
+}
+
+.cardAbout:hover{
+     box-shadow: rgba(79,141,227, 0.4) 5px 5px, rgba(79,141,227, 0.3) 10px 10px, rgba(79,141,227, 0.2) 15px 15px, rgba(79,141,227, 0.1) 20px 20px, rgba(79,141,227, 0.05) 25px 25px;
+}
+
+.about-section {
+    padding: 50px;
+    text-align: center;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.containerAbout {
+    padding: 0 16px;
+}
+
+.containerAbout::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.titleAbout {
+    color: grey;
+}
+.btnAbout {
+    padding: 0.8em 1.8em;
+    border: 2px solid var(--gray);
+    position: relative;
+    overflow: hidden;
+    width:100%;
+    background-color: transparent;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    transition: .3s;
+    z-index: 1;
+    font-family: inherit;
+    color: var(--black);
+}
+
+.btnAbout::before {
+    content: '';
+    width: 0;
+    height: 1000%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: var(--gray);
+    color: var(--white);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+.btnAbout:hover::before {
+    width: 105%;
+}
+
+.btnAbout:hover {
+    color: var(--black);
+}
