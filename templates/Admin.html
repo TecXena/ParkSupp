@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADMIN DASHBOARD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static', filename='pages.css')}}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+            integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.2/socket.io.js"
+            integrity="sha512-jMNwWSmjje4fjYut9MBGKXw5FZA6D67NHAuC9szpjbbjg51KefquNfvn4DalCbGfkcv/jHsHnPo1o47+8u4biA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+<style>
+    @media screen and (max-width: 500px) {
+    .header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .header-right {
+        float: none;
+    }
+}
+
+</style>
+</head>
+<body>
+    
+<div class="header">
+    <img src="{{url_for('static', filename='Logo.png')}}" class="logo" >
+    <div class="header-right">
+        <a href="{{ url_for('adminLogin') }}">Logout</a>
+        <a href="{{ url_for('admin') }}" class="active">Admin Dashboard</a>
+        <a href="{{ url_for('adminSetupPark') }}">Setup Parking Lot</a>
+    </div>
+</div>
+
+<svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 100" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(253, 252, 252, 1)" offset="0%"></stop><stop stop-color="rgba(253, 252, 252, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,60L80,58.3C160,57,320,53,480,48.3C640,43,800,37,960,40C1120,43,1280,57,1440,65C1600,73,1760,77,1920,80C2080,83,2240,87,2400,80C2560,73,2720,57,2880,50C3040,43,3200,47,3360,53.3C3520,60,3680,70,3840,76.7C4000,83,4160,87,4320,83.3C4480,80,4640,70,4800,56.7C4960,43,5120,27,5280,25C5440,23,5600,37,5760,50C5920,63,6080,77,6240,83.3C6400,90,6560,90,6720,78.3C6880,67,7040,43,7200,33.3C7360,23,7520,27,7680,30C7840,33,8000,37,8160,46.7C8320,57,8480,73,8640,80C8800,87,8960,83,9120,81.7C9280,80,9440,80,9600,73.3C9760,67,9920,53,10080,46.7C10240,40,10400,40,10560,41.7C10720,43,10880,47,11040,40C11200,33,11360,17,11440,8.3L11520,0L11520,100L11440,100C11360,100,11200,100,11040,100C10880,100,10720,100,10560,100C10400,100,10240,100,10080,100C9920,100,9760,100,9600,100C9440,100,9280,100,9120,100C8960,100,8800,100,8640,100C8480,100,8320,100,8160,100C8000,100,7840,100,7680,100C7520,100,7360,100,7200,100C7040,100,6880,100,6720,100C6560,100,6400,100,6240,100C6080,100,5920,100,5760,100C5600,100,5440,100,5280,100C5120,100,4960,100,4800,100C4640,100,4480,100,4320,100C4160,100,4000,100,3840,100C3680,100,3520,100,3360,100C3200,100,3040,100,2880,100C2720,100,2560,100,2400,100C2240,100,2080,100,1920,100C1760,100,1600,100,1440,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path></svg>
+
+<img src="{{ url_for('video_feed') }}" class="center">
+
+<h1 style="text-align:center">CHAT BOX</h1>
+<div class="card">
+    <div class="chat-header">Chat</div>
+    <div id="chatbox"></div>
+    <div class="chat-input">
+        <input type="text" id="username" class="input" placeholder="Type your username...">
+        <input type="text" id="message" class="input" placeholder="Type your message...">
+        <button id="sendBtn" class="send-button">Send</button>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var socket = io.connect("http://localhost:5000")
+        socket.on('connect', function() {
+            socket.send("User connected!");
+
+        });
+
+        socket.on('message', function(data) {
+        if (/putangina|punyeta|gago|pakshet|tite|pepe|puday|ulol|gago|tarantado|sira ulo|burat|pucha|pakshet|fuck|nigger|nigga|niggas|niggers|shit|damn|Christ|Asshole|bitch|Cunt|Jesus/.test(data)){
+            $('#chatbox').append($('<p>').text('Opps, you message have included an inappropriate word.'));
+        }else{
+            $('#chatbox').append($('<p>').text(data));
+            $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight - $('#chatbox')[0].clientHeight);
+        }
+        });
+
+        $('#sendBtn').on('click', function() {
+            socket.send($('#username').val() + ': ' + $('#message').val());
+            $('#message').val('');
+        });
+
+        $('#message').keypress(function(event){
+          var keycode = (event.keyCode ? event.keyCode : event.which);
+          if(keycode == '13'){
+            socket.send($('#username').val() + ': ' + $('#message').val());
+            $('#message').val('');
+          }
+        });
+
+    })
+
+</script>
+
+
+
+
+
+<button class="func-button">Generate Guest Temp Code</button>
+
+
+ <center>
+        <h1>Successfully logged in!</h1>
+        <br>
+
+        <input type="button" onclick="javascript:regWorker()" />
+        </br>
+        <label for="title">
+            Title:
+        </label>
+        <input type="text" id="title">
+        </br>
+        </br>
+
+        <label for="adminMsg">
+            Message:
+        </label>
+        <input type="text" id="adminMsg">
+        </br>
+
+
+    </center>
+
+
+
+<svg style="display: block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" ><path fill="#efe1e8" fill-opacity="1" d="M0,128L60,112C120,96,240,64,360,74.7C480,85,600,139,720,160C840,181,960,171,1080,165.3C1200,160,1320,160,1380,160L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+<div class="footer-new">
+    <h2>Created by:</h2>
+    <p>William, Tabilin | Xena, Tec | Vincent, Torrazo</p>
+    <br>
+    <br>
+</div>
+<script>
+    // (A) OBTAIN USER PERMISSION TO SHOW NOTIFICATION
+    window.onload = () => {
+      // (A1) ASK FOR PERMISSION
+      if (Notification.permission === "default") {
+        Notification.requestPermission().then(perm => {
+          if (Notification.permission === "granted") {
+          // This probably starts the function as soon as the notification is granted
+            alert("Notifications are allowed");
+            //regWorker().catch(err => console.error(err));
+          } else {
+            alert("Please allow notifications.");
+          }
+        });
+      }
+
+      // (A2) GRANTED
+      else if (Notification.permission === "granted") {
+        // this one too starts it probably
+        alert("Notifications are allowed");
+        //regWorker().catch(err => console.error(err));
+      }
+
+      // (A3) DENIED
+      else { alert("Please allow notifications."); }
+    }
+
+    // (B) REGISTER SERVICE WORKER
+    async function regWorker () {
+      // (B1) YOUR PUBLIC KEY - CHANGE TO YOUR OWN!
+      const publicKey = "BDxbqmMlxXVxW0YJ0hxp9N3QzD0VeLMSWr_c9ocQzKM6VRYdcAz-jKyTGy2Z9mIKIYawxlT4GFMkk3BzCxGte5M";
+
+      // (B2) REGISTER SERVICE WORKER
+      navigator.serviceWorker.register("S4_sw.js", { scope: "/" });
+
+      // (B3) SUBSCRIBE TO PUSH SERVER
+      navigator.serviceWorker.ready
+      .then(reg => {
+        reg.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: publicKey
+        }).then(
+          // (B3-1) OK - TEST PUSH NOTIFICATION
+          sub => {
+            var data = new FormData();
+            var adminMessage = document.getElementById("adminMsg").value;
+            var msgTitle = document.getElementById("title").value;
+            // we are probably going to send the text from the textbox thru here
+            data.append("sub", JSON.stringify(sub));
+            data.append("adminMessage", adminMessage );
+            data.append("adminMessageTitle", msgTitle );
+            fetch("/push", { method:"POST", body:data })
+            .then(res => res.text())
+            .then(txt => console.log(txt))
+            .catch(err => console.error(err));
+          },
+
+          // (B3-2) ERROR!
+          err => console.error(err)
+        );
+      });
+    }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8  offset-lg-2">
+                <h3 class="mt-5">Live Streaming</h3>
+                <img src="{{ url_for('video_feed') }}" width="50%">
+                <form method="post" action="{{url_for('functions')}}">
+                    <input type="submit" value="User View" name="user" />
+                    <input type="submit" value="Admin View" name="admin"/>
+                </form>
+                <!--<form method="post" action="{{url_for('adminFunctions')}}">
+                    <input type="submit" value="Create parking entrance" name="adminEntrance" />
+                    <input type="submit" value="Create parking slots" name="adminCreate" />
+                    <input type="submit" value="Assign lot to user" name="adminAssign" />
+                    <input type="submit" value="Capture parking lot" name="adminSnap" />
+                </form>
+                -->
+            </div>
+        </div>
+    </div>
+    </body>
+
+
+</html>
